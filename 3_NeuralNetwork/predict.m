@@ -21,13 +21,15 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+Theta1_t = Theta1';
+Theta2_t = Theta2';
 
-
-
-
-
-
-
+% Add ones to the X data matrix
+X = [ones(m, 1) X];
+Layer2 = sigmoid(X*Theta1_t);
+Layer2 = [ones(m, 1) Layer2];
+Output = sigmoid(Layer2*Theta2_t);
+[max_prob, p]= max(Output, [], 2); 
 
 % =========================================================================
 
