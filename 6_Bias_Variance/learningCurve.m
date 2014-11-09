@@ -52,7 +52,14 @@ error_val   = zeros(m, 1);
 %
 
 % ---------------------- Sample Solution ----------------------
-
+for i = 1:m
+   % use first i training examples to compute theta
+   % compute cost for first i trainig examples and in cross-valditaion set
+   % using computed theta
+   theta = trainLinearReg(X(1:i,:), y(1:i,:), lambda);
+   error_train(i) = linearRegCostFunction(X(1:i,:), y(1:i,:), theta, 0);
+   error_val(i) = linearRegCostFunction(Xval, yval, theta, 0);
+end
 
 
 

@@ -96,7 +96,6 @@ hold off;
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-
 %% =========== Part 5: Learning Curve for Linear Regression =============
 %  Next, you should implement the learningCurve function. 
 %
@@ -164,7 +163,7 @@ pause;
 %  lambda to see how the fit and learning curve change.
 %
 
-lambda = 0;
+lambda = 100;
 [theta] = trainLinearReg(X_poly, y, lambda);
 
 % Plot training data and fit
@@ -218,3 +217,9 @@ end
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
+
+%% =========== Test Set Error =============
+[min_error_val, min_error_val_index] = min(error_val);
+theta = trainLinearReg([ones(length(X(:,1)), 1) X], y, lambda_vec(min_error_val_index));
+error_test = linearRegCostFunction([ones(length(Xtest(:,1)), 1), Xtest], ytest, theta, lambda_vec(min_error_val_index));
+fprintf('For lambda = %f; Test set error = %f\n', lambda_vec(min_error_val_index), error_test);
