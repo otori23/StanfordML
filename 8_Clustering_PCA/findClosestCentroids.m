@@ -20,13 +20,15 @@ idx = zeros(size(X,1), 1);
 %
 % Note: You can use a for-loop over the examples to compute this.
 %
-
-
-
-
-
-
-
+m = length(idx);
+deltas = zeros(m,K);
+for i = 1:m,
+    for j = 1:K,
+        delta = X(i,:) - centroids(j,:);
+        deltas(i,j) = delta*delta';
+    end
+end
+[elems, idx] = min(deltas, [], 2);
 % =============================================================
 
 end
